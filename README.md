@@ -28,6 +28,8 @@ Maude 24 Artist
 { :name => "Maude", :age => 24, :occupation => "Artist" }
 ```
 
+###### Make sure the value of the :age key is an Integer
+
 ### hash_dig.rb
 
 Write a program that uses the `sample_hash` variable and prints the value of key "history"
