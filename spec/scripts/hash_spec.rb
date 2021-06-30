@@ -10,11 +10,10 @@ describe "hash_person.rb" do
     
     response = /\{:name=>"Osi", :age=>24, :occupation=>"Songwriter"\}/
 
-    # expect { require_relative("../../hash_person") }.to output(response).to_stdout
-    output = with_captured_stdout { require_relative('../../hash_find_value')} 
+    output = with_captured_stdout { require_relative('../../hash_person')} 
     output = "empty" if output.empty? 
     expect(output.match?(response)).to be(true),
-      "Expected output to be '{:name=>\"Osi\", :age=>24, :occupation=>\"Songwriter\"}', but was #{output}."
+      "Expected output to be 'Enter a name, age, and occupation separated by spaces:\\n{:name=>\"Osi\", :age=>24, :occupation=>\"Songwriter\"}', but was #{output}."
   end
 end
 
@@ -30,11 +29,10 @@ describe "hash_person.rb" do
     
     response = /\{:name=>"Lia", :age=>32, :occupation=>"Engineer"\}/
 
-    # expect { require_relative("../../hash_person") }.to output(response).to_stdout
-    output = with_captured_stdout { require_relative('../../hash_find_value')} 
+    output = with_captured_stdout { require_relative('../../hash_person')} 
     output = "empty" if output.empty? 
     expect(output.match?(response)).to be(true),
-      "Expected output to be '{:name=>\"Lia\", :age=>32, :occupation=>\"Engineer\"}', but was #{output}."
+      "Expected output to be 'Enter a name, age, and occupation separated by spaces:\\n{:name=>\"Lia\", :age=>32, :occupation=>\"Engineer\"}', but was #{output}."
   end
 end
 
@@ -50,11 +48,10 @@ describe "hash_find_value.rb" do
     
     response = /Could not find the integer 4/i
 
-    # expect { require_relative("../../hash_find_value") }.to output(response).to_stdout
     output = with_captured_stdout { require_relative('../../hash_find_value')} 
     output = "empty" if output.empty? 
     expect(output.match?(response)).to be(true),
-      "Expected output to be 'Could not find the integer 4', but was #{output}."
+      "Expected output to be 'Enter an integer to find:\\nCould not find the integer 4', but was #{output}."
   end
 end
 
@@ -74,7 +71,7 @@ describe "hash_find_value.rb" do
     output = with_captured_stdout { require_relative('../../hash_find_value')} 
     output = "empty" if output.empty? 
     expect(output.match?(response)).to be(true),
-      "Expected output to be '100 is under the key: a', but was #{output}."
+      "Expected output to be 'Enter an integer to find:\\n100 is under the key: a', but was #{output}."
   end
 end
 
@@ -94,7 +91,7 @@ describe "hash_find_value.rb" do
     output = with_captured_stdout { require_relative('../../hash_find_value')} 
     output = "empty" if output.empty? 
     expect(output.match?(response)).to be(true),
-      "Expected output to be '22 is under the key: e', but was #{output}."
+      "Expected output to be 'Enter an integer to find:\\n22 is under the key: e', but was #{output}."
   end
 end
 
@@ -114,7 +111,7 @@ describe "hash_find_value.rb" do
     output = with_captured_stdout { require_relative('../../hash_find_value')} 
     output = "empty" if output.empty? 
     expect(output.match?(response)).to be(true),
-      "Expected output to be '32 is under the key: e', but was #{output}."
+      "Expected output to be 'Enter an integer to find:\\n32 is under the key: e', but was #{output}."
   end
 end
 
