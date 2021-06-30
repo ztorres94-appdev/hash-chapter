@@ -10,7 +10,11 @@ describe "hash_person.rb" do
     
     response = /\{:name=>"Osi", :age=>24, :occupation=>"Songwriter"\}/
 
-    expect { require_relative("../../hash_person") }.to output(response).to_stdout
+    # expect { require_relative("../../hash_person") }.to output(response).to_stdout
+    output = with_captured_stdout { require_relative('../../hash_find_value')} 
+    output = "empty" if output.empty? 
+    expect(output.match?(response)).to be(true),
+      "Expected output to be '{:name=>\"Osi\", :age=>24, :occupation=>\"Songwriter\"}', but was #{output}."
   end
 end
 
@@ -26,7 +30,11 @@ describe "hash_person.rb" do
     
     response = /\{:name=>"Lia", :age=>32, :occupation=>"Engineer"\}/
 
-    expect { require_relative("../../hash_person") }.to output(response).to_stdout
+    # expect { require_relative("../../hash_person") }.to output(response).to_stdout
+    output = with_captured_stdout { require_relative('../../hash_find_value')} 
+    output = "empty" if output.empty? 
+    expect(output.match?(response)).to be(true),
+      "Expected output to be '{:name=>\"Lia\", :age=>32, :occupation=>\"Engineer\"}', but was #{output}."
   end
 end
 
@@ -42,7 +50,11 @@ describe "hash_find_value.rb" do
     
     response = /Could not find the integer 4/i
 
-    expect { require_relative("../../hash_find_value") }.to output(response).to_stdout
+    # expect { require_relative("../../hash_find_value") }.to output(response).to_stdout
+    output = with_captured_stdout { require_relative('../../hash_find_value')} 
+    output = "empty" if output.empty? 
+    expect(output.match?(response)).to be(true),
+      "Expected output to be 'Could not find the integer 4', but was #{output}."
   end
 end
 
@@ -58,7 +70,11 @@ describe "hash_find_value.rb" do
     
     response = /100 is under the key: a/i
 
-    expect { require_relative("../../hash_find_value") }.to output(response).to_stdout
+    # expect { require_relative("../../hash_find_value") }.to output(response).to_stdout
+    output = with_captured_stdout { require_relative('../../hash_find_value')} 
+    output = "empty" if output.empty? 
+    expect(output.match?(response)).to be(true),
+      "Expected output to be '100 is under the key: a', but was #{output}."
   end
 end
 
@@ -74,7 +90,11 @@ describe "hash_find_value.rb" do
     
     response = /22 is under the key: e/i
 
-    expect { require_relative("../../hash_find_value") }.to output(response).to_stdout
+    # expect { require_relative("../../hash_find_value") }.to output(response).to_stdout
+    output = with_captured_stdout { require_relative('../../hash_find_value')} 
+    output = "empty" if output.empty? 
+    expect(output.match?(response)).to be(true),
+      "Expected output to be '22 is under the key: e', but was #{output}."
   end
 end
 
@@ -90,7 +110,11 @@ describe "hash_find_value.rb" do
     
     response = /32 is under the key: e/i
 
-    expect { require_relative("../../hash_find_value") }.to output(response).to_stdout
+    # expect { require_relative("../../hash_find_value") }.to output(response).to_stdout
+    output = with_captured_stdout { require_relative('../../hash_find_value')} 
+    output = "empty" if output.empty? 
+    expect(output.match?(response)).to be(true),
+      "Expected output to be '32 is under the key: e', but was #{output}."
   end
 end
 
@@ -116,7 +140,12 @@ describe "hash_dig.rb" do
     
     response = /80/
 
-    expect { require_relative("../../hash_dig") }.to output(response).to_stdout
+    # expect { require_relative("../../hash_dig") }.to output(response).to_stdout
+    output = with_captured_stdout { require_relative('../../hash_dig')} 
+    output = "empty" if output.empty? 
+    expect(output.match?(response)).to be(true),
+      "Expected output to be '80', but was #{output}."
+
   end
 end
 
@@ -145,8 +174,20 @@ describe "hash_list.rb" do
     
     response = /.?James.?\n.?Yolanda.?\n.?Red.?\n.?Fatimah.?\n/i
 
-    expect { require_relative("../../hash_list") }.to output(response).to_stdout
+    # expect { require_relative("../../hash_list") }.to output(response).to_stdout
+    output = with_captured_stdout { require_relative('../../hash_list')} 
+    output = "empty" if output.empty? 
+    expect(output.match?(response)).to be(true),
+      "Expected output to be 'James\nYolanda\nRed\nFatimah\n', but was #{output}."
+
   end
 end
 
-
+def with_captured_stdout
+  original_stdout = $stdout  # capture previous value of $stdout
+  $stdout = StringIO.new     # assign a string buffer to $stdout
+  yield                      # perform the body of the user code
+  $stdout.string             # return the contents of the string buffer
+ensure
+  $stdout = original_stdout  # restore $stdout to its previous value
+end
